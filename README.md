@@ -1,4 +1,4 @@
-# # SpringBoot-Firebase
+# SpringBoot-Firebase
 
 Esse projeto visa exemplificar a criação de uma API com **Spring Boot** combinado com toda a flexibilidade do **Firebase** nesse projeto decidi usar o **Gradle** para me familiarizar e conhecer melhor esse gerenciador de dependência.
 
@@ -25,24 +25,24 @@ Para a configuração da conexão podemos criar uma classe com a anotação @con
 DocumentReference  docRef = db.collection("person").document();
 docRef.create(obj);
 
-Desse modo podemos quando acessamos a collection e pedimos um .document() o firebase entende que deve reservar um referencia de documento e gera um automatico assim que mandamos criar um novo documento, podemos passar um json com N propriedades que a coleção sera capaz de gravar. 
+- Desse modo podemos quando acessamos a collection e pedimos um .document() o firebase entende que deve reservar um referencia de documento e gera um automatico assim que mandamos criar um novo documento, podemos passar um json com N propriedades que a coleção sera capaz de gravar. 
 
 
 ### [GET] /person
-
->public  Object  getPerson()  {
+public  Object  getPerson()  {
 Firestore  db = FirestoreClient.getFirestore();
 ApiFuture<QuerySnapshot> query = db.collection("person").get();
 QuerySnapshot  querySnapshot = query.get();
 List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
 List<Object> data = new  ArrayList<Object>();
->>for (QueryDocumentSnapshot  document  :  documents) {
+for (QueryDocumentSnapshot  document  :  documents) {
 data.add(document.getData());
 }
+return  data
 
->return  data;
 
-Faz uma busca simples com  *db.collection(“person”).get();*, itera todos os resultados devolvendo um json com todas as colleções da base
+- Faz uma busca simples com  *db.collection(“person”).get();*, itera todos os resultados devolvendo um json com todas as colleções da base
+
 
 ### [DELETE] /person
 >public  Object  getPerson(@RequestParam  String  id) throws  InterruptedException, ExecutionException {
@@ -50,5 +50,5 @@ Firestore  db = FirestoreClient.getFirestore();
 DocumentReference  docRef = db.collection("person").document(id);
 docRef.delete();
 
-Busca o documento na base por ID, e excluir o dados bem simples e direto. 
+- Busca o documento na base por ID, e excluir o dados bem simples e direto. 
 
